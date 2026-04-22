@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "T/VNdU2ZXt8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tidal\\projects\\ADWebApp\\ADWebApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\10.0.3\\microsoft.aspnetcore.authentication.negotiate.10.0.3.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices\\10.0.5\\system.directoryservices.10.0.5.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices.protocols\\10.0.3\\system.directoryservices.protocols.10.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

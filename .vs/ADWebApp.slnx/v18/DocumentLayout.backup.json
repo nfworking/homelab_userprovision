@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tidal\\projects\\ADWebApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\ous.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\ous.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\ous.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\ous.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\users.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\users.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\services\\activedirectoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:services\\activedirectoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\adwebapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:adwebapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|c:\\users\\tidal\\projects\\adwebapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A7E2A6CC-8094-49C2-907B-E427F2E2F5C2}|ADWebApp.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "Pages\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\ResetPassword.cshtml",
+              "RelativeToolTip": "Pages\\ResetPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:03:06.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OUs.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\OUs.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\OUs.cshtml.cs",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\OUs.cshtml.cs",
+              "RelativeToolTip": "Pages\\OUs.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T13:02:31.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OUs.cshtml",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\OUs.cshtml",
+              "RelativeDocumentMoniker": "Pages\\OUs.cshtml",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\OUs.cshtml",
+              "RelativeToolTip": "Pages\\OUs.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:02:27.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Users.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Users.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Users.cshtml.cs",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Users.cshtml.cs",
+              "RelativeToolTip": "Pages\\Users.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T13:01:39.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Users.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Users.cshtml",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Users.cshtml",
+              "RelativeToolTip": "Pages\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:01:17.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T13:00:38.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T13:00:09.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ActiveDirectoryService.cs",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Services\\ActiveDirectoryService.cs",
+              "RelativeDocumentMoniker": "Services\\ActiveDirectoryService.cs",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Services\\ActiveDirectoryService.cs",
+              "RelativeToolTip": "Services\\ActiveDirectoryService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAwEcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T12:59:15.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ADWebApp",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\ADWebApp.csproj",
+              "RelativeDocumentMoniker": "ADWebApp.csproj",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\ADWebApp.csproj",
+              "RelativeToolTip": "ADWebApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-14T12:58:50.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T12:56:45.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\tidal\\projects\\ADWebApp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\tidal\\projects\\ADWebApp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-14T12:56:11.862Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
