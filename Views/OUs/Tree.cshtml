@@ -1,0 +1,272 @@
+@model ADPortal.Models.OrganisationalUnitsViewModel
+@{
+    ViewData["Title"] = "Organisational Units";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jstree@3.3.16/dist/themes/default/style.min.css" />
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-1 fw-semibold">Organisational Units</h1>
+        <p class="text-muted mb-0">Tree view by default; select an OU to see users, groups, and child OUs.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/OUs/List" class="btn btn-outline-secondary">
+            <i class="bi bi-list-ul me-1"></i>List View
+        </a>
+        <button class="btn btn-primary" type="button" onclick="openCreateOuModal()">
+            <i class="bi bi-folder-plus me-1"></i>Create OU
+        </button>
+        <button class="btn btn-primary" type="button" onclick="openCreateGroupModal()">
+            <i class="bi bi-people-fill me-1"></i>Create Group
+        </button>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-transparent border-bottom fw-semibold">
+                <i class="bi bi-tree me-2 text-primary"></i>OU Tree
+            </div>
+            <div class="card-body">
+                <div id="ou-tree-loading" class="text-center py-5 text-muted">
+                    <div class="spinner-border spinner-border-sm me-2"></div>Loading OU structure...
+                </div>
+                <div id="ou-tree" style="display:none; min-height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-transparent border-bottom fw-semibold d-flex justify-content-between align-items-center">
+                <div><i class="bi bi-folder-open me-2 text-warning"></i>Selected OU</div>
+                <div class="small text-muted"><code id="selected-ou-dn-label">@Model.SearchBase</code></div>
+            </div>
+            <div class="card-body">
+                <div id="ou-info-empty" class="text-center py-5 text-muted">
+                    Select an OU in the tree to view its contents.
+                </div>
+
+                <div id="ou-info-panel" style="display:none;">
+                    <div class="mb-3">
+                        <div class="text-muted small">Name</div>
+                        <div id="ou-info-name" class="fw-medium"></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-muted small">Distinguished Name</div>
+                        <div><code id="ou-info-dn" class="small text-break"></code></div>
+                    </div>
+
+                    <ul class="nav nav-tabs mb-3" id="ouContentTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-pane" type="button" role="tab">Users</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups-pane" type="button" role="tab">Groups</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ous-tab" data-bs-toggle="tab" data-bs-target="#ous-pane" type="button" role="tab">Child OUs</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="users-pane" role="tabpanel">
+                            <div id="ou-users-loading" class="text-muted small">Select an OU to load users.</div>
+                            <div id="ou-users-list" class="list-group list-group-flush"></div>
+                        </div>
+                        <div class="tab-pane fade" id="groups-pane" role="tabpanel">
+                            <div id="ou-groups-list" class="list-group list-group-flush"></div>
+                        </div>
+                        <div class="tab-pane fade" id="ous-pane" role="tabpanel">
+                            <div id="ou-childous-list" class="list-group list-group-flush"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createOuModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="CreateOu" asp-controller="OUs" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title">Create OU</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Parent OU</label>
+                        <select class="form-select" name="ParentOuDn" id="createOuParentSelect" required>
+                            @foreach (var ou in Model.OUs)
+                            {
+                                <option value="@ou.DistinguishedName">@ou.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">OU Name</label>
+                        <input class="form-control" name="Name" id="createOuName" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create OU</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createGroupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="CreateGroup" asp-controller="OUs" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Parent OU</label>
+                        <select class="form-select" name="ParentOuDn" id="createGroupParentSelect" required>
+                            @foreach (var ou in Model.OUs)
+                            {
+                                <option value="@ou.DistinguishedName">@ou.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Group Name</label>
+                        <input class="form-control" name="Name" id="createGroupName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">SAM Account Name</label>
+                        <input class="form-control" name="SamAccountName" id="createGroupSam" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">Description</label>
+                        <input class="form-control" name="Description" id="createGroupDescription" />
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="SecurityEnabled" value="true" checked />
+                        <input type="hidden" name="SecurityEnabled" value="false" />
+                        <label class="form-check-label">Security group</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jstree@3.3.16/dist/jstree.min.js"></script>
+<script>
+let currentOuDn = '@Model.SearchBase';
+
+function openCreateOuModal() {
+    if (currentOuDn) {
+        document.getElementById('createOuParentSelect').value = currentOuDn;
+    }
+    new bootstrap.Modal(document.getElementById('createOuModal')).show();
+}
+
+function openCreateGroupModal() {
+    if (currentOuDn) {
+        document.getElementById('createGroupParentSelect').value = currentOuDn;
+    }
+    new bootstrap.Modal(document.getElementById('createGroupModal')).show();
+}
+
+function renderList(containerId, items, emptyText, iconClass) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    if (!items || items.length === 0) {
+        container.innerHTML = `<div class="text-muted small py-3">${emptyText}</div>`;
+        return;
+    }
+
+    items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'list-group-item px-0';
+        row.innerHTML = `
+            <div class="fw-medium"><i class="bi ${iconClass} me-2 text-muted"></i>${item.name || item.samAccountName || item.distinguishedName}</div>
+            <div class="small text-muted text-break">${item.samAccountName ? item.samAccountName + ' · ' : ''}${item.distinguishedName || ''}</div>
+        `;
+        container.appendChild(row);
+    });
+}
+
+function loadOuContents(dn, label) {
+    currentOuDn = dn;
+    document.getElementById('selected-ou-dn-label').textContent = dn;
+    document.getElementById('ou-info-empty').style.display = 'none';
+    document.getElementById('ou-info-panel').style.display = '';
+    document.getElementById('ou-info-name').textContent = label;
+    document.getElementById('ou-info-dn').textContent = dn;
+    document.getElementById('ou-users-loading').style.display = '';
+    document.getElementById('ou-users-loading').textContent = 'Loading contents...';
+    document.getElementById('ou-users-list').innerHTML = '';
+    document.getElementById('ou-groups-list').innerHTML = '';
+    document.getElementById('ou-childous-list').innerHTML = '';
+
+    $.ajax({
+        url: '/OUs/Contents',
+        data: { dn: dn },
+        success: function (data) {
+            document.getElementById('ou-users-loading').style.display = 'none';
+            renderList('ou-users-list', data.users, 'No users in this OU.', 'bi-person');
+            renderList('ou-groups-list', data.groups, 'No groups in this OU.', 'bi-people');
+            renderList('ou-childous-list', data.childOUs, 'No child OUs in this OU.', 'bi-folder');
+        },
+        error: function () {
+            document.getElementById('ou-users-loading').textContent = 'Failed to load OU contents.';
+        }
+    });
+}
+
+$(function () {
+    $.ajax({
+        url: '/OUs/TreeData',
+        success: function (data) {
+            $('#ou-tree-loading').hide();
+            $('#ou-tree').show();
+
+            $('#ou-tree').jstree({
+                core: {
+                    data: data,
+                    themes: { icons: true }
+                },
+                plugins: ['search', 'wholerow']
+            });
+
+            $('#ou-tree').on('select_node.jstree', function (e, selected) {
+                var node = selected.node;
+                loadOuContents(node.id, node.text);
+            });
+
+            if (data && data.length > 0) {
+                const root = data.find(x => x.parent === '#') || data[0];
+                if (root) {
+                    $('#ou-tree').jstree('select_node', root.id);
+                }
+            }
+        },
+        error: function () {
+            $('#ou-tree-loading').html('<i class="bi bi-exclamation-triangle text-danger me-2"></i>Failed to load OU tree.');
+        }
+    });
+});
+</script>
+}

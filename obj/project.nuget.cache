@@ -1,12 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "T/VNdU2ZXt8=",
+  "dgSpecHash": "uJDPbIsXx5E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\tidal\\projects\\ADWebApp\\ADWebApp.csproj",
+  "projectFilePath": "C:\\Users\\tidal\\Downloads\\ADPortal(1)\\ADPortal\\ADPortal.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\10.0.3\\microsoft.aspnetcore.authentication.negotiate.10.0.3.nupkg.sha512",
-    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices\\10.0.5\\system.directoryservices.10.0.5.nupkg.sha512",
-    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices.protocols\\10.0.3\\system.directoryservices.protocols.10.0.3.nupkg.sha512"
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\8.0.0\\microsoft.aspnetcore.authentication.negotiate.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.0\\microsoft.aspnetcore.connections.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.features\\8.0.0\\microsoft.extensions.features.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices\\8.0.0\\system.directoryservices.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices.accountmanagement\\8.0.0\\system.directoryservices.accountmanagement.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.directoryservices.protocols\\8.0.0\\system.directoryservices.protocols.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\tidal\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

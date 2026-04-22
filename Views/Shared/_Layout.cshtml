@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AD Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="azure-dark-theme">
+
+<div class="app-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="sidebar-brand">
+                <i class="bi bi-shield-lock"></i>
+                <span class="brand-text">AD Portal</span>
+            </a>
+            <button class="btn btn-toggle sidebar-toggle d-lg-none" type="button">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Nav -->
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-label">FAVORITES</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" href="/">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-label">ACTIVE DIRECTORY</div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" && ViewContext.RouteData.Values["action"]?.ToString() != "Provisioning" ? "active" : "")" href="/Users">
+                            <i class="bi bi-people"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "OUs" ? "active" : "")" href="/OUs">
+                            <i class="bi bi-diagram-3"></i>
+                            <span>Organizational Units</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" && ViewContext.RouteData.Values["action"]?.ToString() == "Provisioning" ? "active" : "")" href="/Users/Provisioning">
+                            <i class="bi bi-arrow-left-right"></i>
+                            <span>Provisioning</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <i class="bi bi-person-circle"></i>
+                <div class="user-details">
+                    <div class="user-name">@(ViewBag.CurrentUser ?? User.Identity?.Name ?? "User")</div>
+                    <div class="user-auth">
+                        @if (User.FindFirst("AuthMethod")?.Value == "Forms")
+                        {
+                            <span>Form</span>
+                        }
+                        else if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <span>SSO</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <a href="/Auth/Logout" class="btn-icon-logout" title="Sign out">
+                <i class="bi bi-box-arrow-right"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="btn-sidebar-toggle d-lg-none" type="button">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="search-input" placeholder="Search resources, services, and docs (G+/) ..." />
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="header-icon-btn" title="Settings">
+                    <i class="bi bi-gear"></i>
+                </button>
+                <button class="header-icon-btn" title="Help">
+                    <i class="bi bi-question-circle"></i>
+                </button>
+                <button class="header-icon-btn" title="Notifications">
+                    <i class="bi bi-bell"></i>
+                </button>
+                <div class="header-separator"></div>
+                <button class="btn-copilot">
+                    <i class="bi bi-stars"></i>
+                    <span>Copilot</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-wrapper">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>@TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>AD Portal</span>
+                <span class="footer-separator">•</span>
+                <span>corp.lurking.site</span>
+                <span class="footer-separator">•</span>
+                <span>&copy; @DateTime.Now.Year</span>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Sidebar toggle for mobile
+    const sidebarToggleBtns = document.querySelectorAll('.sidebar-toggle, .btn-sidebar-toggle');
+    sidebarToggleBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('show');
+        });
+    });
+
+    // Close sidebar when a nav link is clicked
+    document.querySelectorAll('.sidebar-nav .nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth < 1200) {
+                document.querySelector('.sidebar').classList.remove('show');
+            }
+        });
+    });
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

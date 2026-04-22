@@ -1,0 +1,233 @@
+@model ADPortal.Models.ProvisionUsersViewModel
+@{
+    ViewData["Title"] = "Provisioning";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-1 fw-semibold">User Provisioning</h1>
+        <p class="text-muted mb-0">Source OU: <code>@Model.SourceOuDn</code></p>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <form asp-action="ProvisionSelected" asp-controller="Users" method="post" id="provisionForm">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="SourceOuDn" />
+            <input type="hidden" asp-for="TargetOuDn" id="targetOuDnHidden" />
+            <div id="selectedUsersInputs"></div>
+            <div id="selectedGroupsInputs"></div>
+
+            <div class="row g-3 align-items-start">
+                <div class="col-lg-5">
+                    <label class="form-label fw-medium">Available Users</label>
+                    <select id="availableUsers" class="form-select" size="16" multiple>
+                        @foreach (var user in Model.AvailableUsers)
+                        {
+                            var label = string.IsNullOrWhiteSpace(user.DisplayName)
+                                ? user.SamAccountName
+                                : $"{user.DisplayName} ({user.SamAccountName})";
+                            <option value="@user.SamAccountName">@label</option>
+                        }
+                    </select>
+                    <div class="form-text">Users currently under the configured source OU.</div>
+                </div>
+
+                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center gap-2 pt-4">
+                    <button type="button" class="btn btn-outline-primary w-100" onclick="moveSelected('availableUsers','provisionUsers')" title="Move selected to provision list">
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary w-100" onclick="moveAll('availableUsers','provisionUsers')" title="Move all to provision list">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100" onclick="moveSelected('provisionUsers','availableUsers')" title="Move selected back">
+                        <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100" onclick="moveAll('provisionUsers','availableUsers')" title="Move all back">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </button>
+                </div>
+
+                <div class="col-lg-5">
+                    <label class="form-label fw-medium">Provision Queue</label>
+                    <select id="provisionUsers" class="form-select" size="16" multiple></select>
+                    <div class="form-text">Select one or many users, then click Provision.</div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="button" class="btn btn-success px-4" onclick="openProvisionModal()">
+                    <i class="bi bi-check2-circle me-1"></i>Provision
+                </button>
+                <a href="/Users" class="btn btn-outline-secondary">Back to Users</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="provisionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Provision Users</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="groupStep">
+                    <p class="text-muted small mb-3">Optional: choose one or more groups to add the selected users to before choosing the OU.</p>
+                    <div class="row g-3 align-items-start">
+                        <div class="col-md-5">
+                            <label class="form-label fw-medium">Available Groups</label>
+                            <select id="availableGroups" class="form-select" size="12" multiple>
+                                @foreach (var group in Model.AvailableGroups)
+                                {
+                                    var label = string.IsNullOrWhiteSpace(group.Name) ? group.SamAccountName : group.Name;
+                                    <option value="@group.DistinguishedName">@label</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex flex-column align-items-center justify-content-center gap-2 pt-4">
+                            <button type="button" class="btn btn-outline-primary w-100" onclick="moveSelected('availableGroups','selectedGroups')">
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary w-100" onclick="moveAll('availableGroups','selectedGroups')">
+                                <i class="bi bi-chevron-double-right"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary w-100" onclick="moveSelected('selectedGroups','availableGroups')">
+                                <i class="bi bi-arrow-left"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary w-100" onclick="moveAll('selectedGroups','availableGroups')">
+                                <i class="bi bi-chevron-double-left"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="form-label fw-medium">Selected Groups</label>
+                            <select id="selectedGroups" class="form-select" size="12" multiple></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ouStep" style="display:none;">
+                    <p class="text-muted small mb-3">Choose the target OU for provisioning.</p>
+                    <label class="form-label fw-medium">Target OU</label>
+                    <select class="form-select" id="targetOuSelect">
+                        <option value="">-- Select an OU --</option>
+                        @foreach (var ou in Model.AvailableOUs)
+                        {
+                            if (ou.DistinguishedName == Model.TargetOuDn)
+                            {
+                                <option value="@ou.DistinguishedName" selected="selected">@ou.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@ou.DistinguishedName">@ou.Name</option>
+                            }
+                        }
+                    </select>
+                    <div class="form-text">This dropdown is populated from Active Directory OUs.</div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div class="small text-muted">
+                    <span id="stepLabel">Step 1 of 2: groups</span>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-primary" id="backButton" style="display:none;" onclick="showGroupStep()">Back</button>
+                    <button type="button" class="btn btn-primary" id="nextButton" onclick="showOuStep()">Next</button>
+                    <button type="button" class="btn btn-success" id="confirmButton" style="display:none;" onclick="submitProvision()">Confirm Provision</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+let provisionModal;
+
+function moveSelected(fromId, toId) {
+    const from = document.getElementById(fromId);
+    const to = document.getElementById(toId);
+    const selected = Array.from(from.selectedOptions);
+    selected.forEach(option => to.add(option));
+}
+
+function moveAll(fromId, toId) {
+    const from = document.getElementById(fromId);
+    const to = document.getElementById(toId);
+    const all = Array.from(from.options);
+    all.forEach(option => to.add(option));
+}
+
+function openProvisionModal() {
+    const queue = document.getElementById('provisionUsers');
+    if (queue.options.length === 0) {
+        alert('Select at least one user to provision.');
+        return;
+    }
+
+    provisionModal = new bootstrap.Modal(document.getElementById('provisionModal'));
+    showGroupStep();
+    provisionModal.show();
+}
+
+function showGroupStep() {
+    document.getElementById('groupStep').style.display = '';
+    document.getElementById('ouStep').style.display = 'none';
+    document.getElementById('nextButton').style.display = '';
+    document.getElementById('backButton').style.display = 'none';
+    document.getElementById('confirmButton').style.display = 'none';
+    document.getElementById('stepLabel').innerText = 'Step 1 of 2: groups';
+}
+
+function showOuStep() {
+    document.getElementById('groupStep').style.display = 'none';
+    document.getElementById('ouStep').style.display = '';
+    document.getElementById('nextButton').style.display = 'none';
+    document.getElementById('backButton').style.display = '';
+    document.getElementById('confirmButton').style.display = '';
+    document.getElementById('stepLabel').innerText = 'Step 2 of 2: choose OU';
+}
+
+function submitProvision() {
+    const targetSelect = document.getElementById('targetOuSelect');
+    const targetOu = targetSelect.value.trim();
+
+    if (!targetOu) {
+        alert('Target OU is required.');
+        targetSelect.focus();
+        return;
+    }
+
+    document.getElementById('targetOuDnHidden').value = targetOu;
+
+    const queue = document.getElementById('provisionUsers');
+    const selectedGroups = document.getElementById('selectedGroups');
+    const selectedUsersContainer = document.getElementById('selectedUsersInputs');
+    const selectedGroupsContainer = document.getElementById('selectedGroupsInputs');
+    selectedUsersContainer.innerHTML = '';
+    selectedGroupsContainer.innerHTML = '';
+
+    Array.from(queue.options).forEach(option => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'SelectedSamAccountNames';
+        input.value = option.value;
+        selectedUsersContainer.appendChild(input);
+    });
+
+    Array.from(selectedGroups.options).forEach(option => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'SelectedGroupDns';
+        input.value = option.value;
+        selectedGroupsContainer.appendChild(input);
+    });
+
+    document.getElementById('provisionForm').submit();
+}
+</script>
+}
